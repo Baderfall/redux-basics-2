@@ -17,8 +17,8 @@ Contains:
 
 ## Run the app
 
-0. ```npm install```
-0. ```npm start```
+1. ```npm i```
+2. ```npm start```
 
 Once running, if you want to hide the redux dev monitor: ```CTRL+H```
 
