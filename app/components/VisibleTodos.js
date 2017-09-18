@@ -1,5 +1,6 @@
 import Todos from './Todos';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 /* Functions */
 
@@ -23,17 +24,17 @@ const getVisibleTodos = (todos, filter) => {
 
 /* Component */
 
-const mapStateToProps = (state, ownProps) => ({
-  todos: getVisibleTodos(state.todos, ownProps.filter)
+const mapStateToProps = (state, { params }) => ({
+  todos: getVisibleTodos(state.todos, params.filter || 'all')
 });
 const mapDispatchToProps = (dispatch) => ({
   onTodoClick(id) {
     dispatch(toggleTodo(id));
   }
 });
-const VisibleTodos = connect(
+const VisibleTodos = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Todos);
+)(Todos));
 
 export default VisibleTodos;

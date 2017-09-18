@@ -4,10 +4,10 @@ import AddTodo from './AddTodo';
 import VisibleTodos from './VisibleTodos';
 import Filters from './Filters';
 
-const App = ({ params }) => (
+const App = () => (
   <div>
     <AddTodo />
-    <VisibleTodos filter={params.filter || 'all'} />
+    <VisibleTodos />
     <Filters />
   </div>
 );
