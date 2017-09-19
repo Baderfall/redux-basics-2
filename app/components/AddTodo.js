@@ -1,12 +1,7 @@
 import React from 'react';
-import { v4 } from 'uuid';
 import { connect } from 'react-redux';
 
-const addTodo = (text) => ({
-  type: 'ADD_TODO',
-  id: v4(),
-  text
-});
+import { addTodo } from '../actions';
 
 /* AddTodo. Second argument is a context. */
 let AddTodo = ({ dispatch }) => {
