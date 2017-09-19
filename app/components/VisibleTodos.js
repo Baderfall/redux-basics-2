@@ -1,6 +1,7 @@
 import Todos from './Todos';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { getVisibleTodos } from '../reducers';
 
 /* Functions */
 
@@ -9,32 +10,14 @@ const toggleTodo = (id) => ({
   id
 });
 
-const getVisibleTodos = (todos, filter) => {
-  switch(filter) {
-    case 'all':
-      return todos;
-    case 'active':
-      return todos.filter(todo => !todo.completed);
-    case 'completed':
-      return todos.filter(todo => todo.completed);
-    default:
-      throw new Error(`Unknown filter: ${filter}`);
-  }
-};
-
-/* Component */
+/* Component. Second argument is 'ownParams' */
 
 const mapStateToProps = (state, { params }) => ({
-  todos: getVisibleTodos(state.todos, params.filter || 'all')
-});
-const mapDispatchToProps = (dispatch) => ({
-  onTodoClick(id) {
-    dispatch(toggleTodo(id));
-  }
+  todos: getVisibleTodos(state, params.filter || 'all')
 });
 const VisibleTodos = withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps
+  { onTodoClick: toggleTodo }
 )(Todos));
 
 export default VisibleTodos;
