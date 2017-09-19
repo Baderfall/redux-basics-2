@@ -5,13 +5,7 @@ import { withRouter } from 'react-router';
 import * as actions from '../actions';
 import Todos from './Todos';
 import { getVisibleTodos } from '../reducers';
-import { fetchTodos } from '../api';
 
-/* Functions */
-
-
-
-/* Component. Second argument is 'ownParams' */
 
 class VisibleTodos extends Component {
   componentDidMount() {
@@ -25,10 +19,8 @@ class VisibleTodos extends Component {
   }
 
   fetchData() {
-    const { filter, receiveTodos } = this.props;
-    fetchTodos(filter).then(todos =>
-      receiveTodos(todos)
-    );
+    const { filter, fetchTodos } = this.props;
+    fetchTodos(filter);
   }
 
   render() {

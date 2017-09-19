@@ -19,12 +19,24 @@ const addLoggingToDispatch = (store) => {
   };
 };
 
+const addPromiseToDispatch = (store) => {
+  const originalDispatch = store.dispatch;
+  return (action) => {
+    if (typeof action.then === 'function') {
+      return action.then(originalDispatch);
+    }
+    return originalDispatch;
+  };
+};
+
 const configureStore = () => {
   const store = createStore(todoApp);
 
   if (process.env.NODE_ENV !== 'production') {
     store.dispatch = addLoggingToDispatch(store);
   }
+
+  store.dispatch = addPromiseToDispatch(store);
 
   return store;
 };
