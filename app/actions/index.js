@@ -1,5 +1,7 @@
 import { v4 } from 'uuid';
+
 import * as api from '../api';
+import { getIsFetching } from '../reducers';
 
 const requestTodos = (filter) => ({
   type: 'REQUEST_TODOS',
@@ -12,11 +14,12 @@ const receiveTodos = (todos, filter) => ({
   filter
 });
 
-export const fetchTodos = filter => dispatch => {
+export const fetchTodos = filter => (dispatch, getState) => {
+  if (getIsFetching(getState(), filter)) {
+    return Promise.resolve();
+  }
   dispatch(requestTodos(filter));
-  // Why this way in tutorial?
-  // return api.fetchTodos(filter).then(todos => {
-  api.fetchTodos(filter).then(todos => {
+  return api.fetchTodos(filter).then(todos => {
     dispatch(receiveTodos(todos, filter));
   });
 };
