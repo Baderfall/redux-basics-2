@@ -39,4 +39,6 @@ export default createList;
 
 /* state === arr of ids */
 export const getIds = state => state.ids;
+
+/* state === boolean */
 export const getIsFetching = state => state.isFetching;
