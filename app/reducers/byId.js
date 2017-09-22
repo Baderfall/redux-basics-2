@@ -1,7 +1,7 @@
 /* state === byId (arr of todos) */
 const byId = (state = {}, action) => {
   switch (action.type) {
-    case 'RECEIVE_TODOS':
+    case 'FETCH_TODOS_SUCCESS':
       const nextState = { ...state };
       action.todos.forEach(todo => {
         nextState[todo.id] = todo;

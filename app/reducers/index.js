@@ -24,6 +24,9 @@ export const getVisibleTodos = (state, filter) => {
 };
 
 /* state === byId (arr of todos) & listByFilter obj of arrs of ids */
-export const getIsFetching = (state, filter) => {
-  return fromList.getIsFetching(state.listByFilter[filter]);
-};
+export const getIsFetching = (state, filter) =>
+  fromList.getIsFetching(state.listByFilter[filter]);
+
+/* state === byId (arr of todos) & listByFilter obj of arrs of ids */
+export const getErrorMessage = (state, filter) =>
+  fromList.getErrorMessage(state.listByFilter[filter]);
