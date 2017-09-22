@@ -1,5 +1,3 @@
-import { v4 } from 'uuid';
-
 import * as api from '../api';
 import { getIsFetching } from '../reducers';
 
@@ -29,11 +27,14 @@ export const fetchTodos = filter => (dispatch, getState) => {
   );
 };
 
-export const addTodo = text => ({
-  type: 'ADD_TODO',
-  id: v4(),
-  text
-});
+/* We use func-action here (using thunk) to operate with async operations */
+export const addTodo = text => dispatch =>
+  api.addTodo(text).then(todo => {
+    dispatch({
+      type: 'ADD_TODO_SUCCESS',
+      todo
+    });
+  });
 
 export const toggleTodo = id => ({
   type: 'TOGGLE_TODO',

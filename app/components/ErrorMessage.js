@@ -2,7 +2,7 @@ import React from 'react';
 
 const ErrorMessage = ({message, retry}) => (
   <div>
-    <p>Smth went wrong. {message}</p>
+    <p>{message}</p>
     <button
       onClick={retry}
     >Retry</button>
