@@ -6,13 +6,13 @@ const createList = filter => {
     switch(action.type) {
       case 'FETCH_TODOS_SUCCESS':
         if (filter === action.filter) {
-          return action.todos.map(todo => todo.id);
+          return action.response.result;
         } else {
           return state;
         }
       case 'ADD_TODO_SUCCESS':
         if (filter !== 'completed') {
-          return [...state, action.todo.id];
+          return [...state, action.response.result];
         } else {
           return state;
         }
